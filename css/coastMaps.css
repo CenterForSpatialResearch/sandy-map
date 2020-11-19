@@ -1,0 +1,416 @@
+@import url("../js/lightbox/css/lightbox.css");
+
+#miniMap {
+  position: fixed;
+  top: 20px;
+  /*left: 40px;*/
+  overflow:hidden;
+  /*opacity:0;*/
+  display:none;
+  /*border: solid 1px #111;*/
+  box-shadow: 0px 0px 20px #111;
+
+}
+
+#miniMap div {
+  position: absolute;
+  top: 00px;
+  left: 0px;
+  height: 0px;
+  width: 100%;
+  background-color: white;
+  opacity: .1;
+  /*cursor:hand; cursor:pointer; */
+}
+.map { position:absolute; }
+
+.backgroundMap {
+  position:absolute;
+  opacity:.9;
+
+  -moz-box-shadow: inset 40px 20px 50px -40px rgba(0, 0, 0, .7);
+  -webkit-box-shadow: inset 40px 20px 50px -40px rgba(0, 0, 0, .7);
+  box-shadow: inset 40px 20px 50px -40px rgba(0, 0, 0, .7);
+}
+
+.surgeLine {
+  position:absolute;
+  display:none;
+
+  -moz-box-shadow: inset 40px 20px 50px -40px rgba(0, 0, 0, .7);
+  -webkit-box-shadow: inset 40px 20px 50px -40px rgba(0, 0, 0, .7);
+  box-shadow: inset 40px 20px 50px -40px rgba(0, 0, 0, .7);
+}
+
+/*.placeLabels {  position:absolute; }*/
+
+.damageCircles circle {
+    fill: rgb(202,32,0);
+    opacity: .5;
+    stroke:black;
+    stroke-width:1px;
+    display:inline;
+  }
+
+.damageCircles circle:hover {
+  stroke-width:2px;
+}
+.damagePoints path {
+  fill: #400;
+  opacity: .4;
+  pointer-events:none;
+}
+
+.mapLabel {
+  color:#DDD;
+  font: 400 14px/1.6 'Cabin', Arial, sans-serif;
+  /*line-height:14px;*/
+  text-shadow: 1px 1px 3px #000; 
+
+}
+  .mapLabel div { position:absolute; }
+  .mapLabel strong {
+    font-weight:700;
+    font-size:18px;
+    line-height:18px;
+    color:#FFF;
+  }
+
+.layerToggles {
+  position: absolute;
+  width: 140px; height:400px;
+  left: 600px; top: 0px;
+  text-align:right;
+  overflow:hidden;
+}
+  .layerToggles .title {
+    /*padding:0px 5px;*/
+    color:#555;
+    font: 700 12px/25px 'Cabin', Arial, sans-serif;
+  }
+  .layerToggles .layers {
+    position:absolute;
+    top:25px;right:0px;
+    margin:0px 0px;
+    width:138px;
+    background-color:#3a3a3a;
+    font: 400 15px/15px 'Cabin', Arial, sans-serif;
+    border: solid 1px #111;
+  }
+
+  .layerToggles .key {
+    position: absolute;
+    top: 78px;
+    border-top: solid 1px #333;
+    margin-top: 5px;
+
+    text-align: left;
+  }
+    .key > div.damage,
+    .key > div.surge {
+      margin-left: 5px;
+      padding: 5px 0px 5px 30px;
+    }
+      .key>div.damage { background: url(../data/key1.png) no-repeat center left; }
+      .key>div.surge  { background: url(../data/key2.png) no-repeat center left; }
+      .key > div.choropleth {
+        /*display:none;*/
+        padding: 5px 0px;
+        height:37px;
+        /*background-color: red;*/
+      }
+
+  .key .small {
+    font: 400 10px/12px 'Cabin', Arial, sans-serif;
+    color: #555;
+  }
+  .key > .choropleth > .small  { display: none;}
+
+  .layerToggles div.toggle { 
+    padding:5px 5px;
+
+   -moz-box-shadow:    inset 0 0 30px 0px #181818;
+    -webkit-box-shadow: inset 0 0 30px 0px #181818;
+    box-shadow:         inset 0 0 30px 0px #181818;
+
+    color:#111; 
+    cursor:hand; cursor:pointer; 
+  }
+  .layerToggles div.toggle:last-child { border-top:solid 1px #111; }
+
+  .layerToggles div.toggle:hover {
+    -moz-box-shadow: inset 0 0 40px 3px #181818;
+    -webkit-box-shadow: inset 0 0 40px 3px #181818;
+    box-shadow: inset 0 0 40px 3px #181818;
+  }
+
+  #fixed-layerToggles { 
+      position: fixed; 
+      top: 0px; left: 600px;
+      display:none;
+  }
+.photoBox {
+  position:absolute;
+  width: 360px;
+  height: 239px;
+  border:3px solid #222;
+  opacity:1;
+  cursor:hand; cursor:pointer;
+  display: none;
+
+  -moz-box-shadow: inset 0px 0px 20px rgba(0,0,0,0.9);
+  -webkit-box-shadow: inset 0px 0px 20px rgba(0,0,0,0.9);
+  box-shadow: inset 0px 0px 20px rgba(0,0,0,0.9);
+}
+
+.photoBox_link { display: block; width:100%; height:100%; }
+
+.photoColumn {
+  position:relative;
+  left: 750px;
+  top:0px;
+  width: 400px;
+  height: 100%;
+  background: #161616;
+  border-left: 1px solid #2A2A2A;
+
+  background-image: url(../data/darkbg.png);
+  
+  -moz-box-shadow: inset 0px 0px 30px rgba(0,0,0,0.9);
+  -webkit-box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.9);
+  box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 0.9);
+}
+
+.photoAnnot {
+  position:absolute;
+  background-color:none;
+  top:0px;
+  width:100%;
+  /*height:60px;*/
+
+  text-align:center;
+  font: 400 14px/1.6 'Cabin', Arial, sans-serif;
+  color:#333;
+  padding:40px 0px 0px 0px;
+  font-style: italic;
+
+}
+
+.photoPointer {
+ position: absolute; 
+ left: 740px;
+ top:0px;
+ width:10px;
+ height:100%;
+}
+
+
+/*TODO: replace with img?*/
+.photoPointer div {
+  position:absolute;
+  top:0px; left:2px;
+  display:none;
+  /*width:20px; height: 10px;*/
+  background: url(../data/arrow.png) no-repeat top center;
+
+  width: 10px; height: 15px;
+/*  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 7px solid #0C0C0C;*/
+}
+#fixed-photoAnnot { 
+    position: fixed; 
+    top: 0px;
+    left: 888px;
+
+    width:400px;
+    display:none;
+}
+
+#coast path {  stroke:white; stroke-width:.5px; opacity:1; fill: none; }
+
+#tracts{}
+  #tracts rect { 
+    opacity:.9;
+    display:none; 
+  }
+  #tracts path {
+    stroke: white;
+    stroke-width: .5px;
+    display:none;
+  }
+
+#tractEvents {
+  display:none;
+}
+  #tractEvents path {
+    /*stroke: red;*/
+    stroke-width: 2px;
+    opacity: .0;
+    /*fill: black;*/
+  }
+  #tractEvents path:hover { 
+    fill-opacity:0;
+    stroke:black;
+    opacity:.5;
+  }
+
+/* Choropleth state classes */
+.layerToggles.income > .layers > .income,
+.layerToggles.unemp  > .layers > .unemp {  
+  color: #888; 
+}
+
+#tracts.income path,
+#tracts.unemp path { 
+  display: inline;
+}
+#tracts.income .i1 {fill: #122f04; stroke: #122f04}
+#tracts.income .i2 {fill: #1B440B; stroke: #1B440B}
+#tracts.income .i3 {fill: #31681F; stroke: #31681F}
+#tracts.income .i4 {fill: #4C8C3A; stroke: #4C8C3A}
+#tracts.income .i5 {fill: #6AAD5B; stroke: #6AAD5B}
+
+#tracts.unemp .u1 {fill: #2f1204; stroke: #2f1204; }
+#tracts.unemp .u2 {fill: #441B0B; stroke: #441B0B; }
+#tracts.unemp .u3 {fill: #68311F; stroke: #68311F; }
+#tracts.unemp .u4 {fill: #8C4C3A; stroke: #8C4C3A; }
+#tracts.unemp .u5 {fill: #AD6A5B; stroke: #AD6A5B; }
+
+#tracts.income rect,
+#tracts.unemp rect {
+  display:inline; fill: #1c1c1c
+}
+
+#tractEvents.income,
+#tractEvents.unemp { display: inline;}
+
+.damageCircles.income circle,
+.damageCircles.unemp circle { 
+  fill: white; 
+  opacity: .025; 
+  display:inline;
+}
+
+.income .key > .damage,
+.unemp  .key > .damage { 
+  background: url(../data/key1_choropleth.png) no-repeat center left; 
+}
+
+.income .key > .surge,
+.unemp  .key > .surge { 
+  background: url(../data/key2_choropleth.png) no-repeat center left; 
+}
+
+.income .key > .choropleth { background: url(../data/key3_income.png) no-repeat center left; }
+.unemp  .key > .choropleth { background: url(../data/key3_unemp.png)  no-repeat center left; }
+
+.income > .key .income,
+.unemp  > .key .unemp  { display: block;}
+
+.damagePoints.income path,
+.damagePoints.unemp path { 
+  fill: #e0dec1; 
+  opacity:.0;
+}
+
+.surgeLine.income,
+.surgeLine.unemp { 
+  display: inline;
+}
+
+.surgeLine.income { opacity:.1; }
+.surgeLine.unemp  { opacity:.1; }
+/* */
+
+.photoLocation {
+  fill: black;
+  opacity: .4;
+  stroke-width: 0;
+}
+.photoLocation.closest {
+  fill: white;
+  opacity: .8;
+}
+
+.photoLine { 
+    fill:none;
+    stroke: #000;
+    stroke-width: .5px;
+    stroke-dasharray: 2, 2;
+    display:none;
+}
+
+.photoLine.closest { display:inline; }
+
+
+/* *** Individual coast maps */
+
+.ny.interactive {
+  height: 3550px;
+} 
+  .ny .map {
+    position:absolute;
+    width: 960px;
+    height: 3550px;
+  }
+  .ny .backgroundMap {
+    width: 1150px;
+    height: 3550px;
+    background: url(../data/ny_backgroundmap.png) no-repeat top left;
+    /*opacity:.2;*/
+  }
+  .ny .surgeLine {
+    background: url(../data/ny_surgeLine.png) no-repeat top left;
+    /*opacity:.2;*/
+  }
+  .ny .placeLabels {
+    width: 1150px;
+    height: 3550px;
+    background: url(../data/ny_rdsAndLabels.png) no-repeat top left;
+    /*display:none;*/
+  }
+  .ny .photoBox {
+    background-size: 3600px 8126px;
+    background:#000 url(../data/photos/ny/ny_photoMosaic.jpg) no-repeat right top;
+  }
+  .ny .miniMap {
+    height: 355px;
+    width: 75px;
+    background:#111 url(../data/ny_tinyMap.png) no-repeat left top;
+  }
+
+.nj.interactive {
+  height: 3775px;
+} 
+  .nj .map {
+    position:absolute;
+    width: 960px;
+    height: 3775px;
+  }
+  .nj .backgroundMap {
+    width: 1150px;
+    height: 3775px;
+    background: url(../data/nj_backgroundmap.png) no-repeat top left;
+    /*opacity:.2;*/
+  }
+  .nj .surgeLine {
+    width: 1150px;
+    height: 3550px;
+    background: url(../data/nj_surgeLine.png) no-repeat top left;
+    /*opacity:.2;*/
+  }
+  .nj .placeLabels {
+    width: 1150px;
+    height: 3775px;
+    background: url(../data/nj_rdsAndLabels.png) no-repeat top left;
+  }
+  .nj .photoBox {
+    background-size: 3600px 8126px;
+    background:#000 url(../data/photos/nj/nj_photoMosaic.jpg) no-repeat right top;
+  }
+  .nj .miniMap {
+    height: 377px;
+    width: 75px;
+    background:#111 url(../data/nj_tinyMap.png) no-repeat left top;
+  }
